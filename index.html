@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Video Studio</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070d1d;color:#f5f7ff;font-family:Arial,sans-serif}
+header{padding:22px 24px 8px;display:flex;justify-content:space-between;align-items:center}
+h1{margin:0;font-size:30px}h1 span{color:#a14cff}.pro{border:1px solid #9b55ff;border-radius:22px;padding:9px 14px}
+main{padding:12px 24px 100px}.sub{color:#9ca6bd;font-size:17px;margin:12px 0 26px}
+.card{border:1px solid #25304a;background:#0c1428;border-radius:22px;padding:20px;margin-bottom:16px}
+label{display:block;margin:0 0 10px;font-size:17px}.prompt{width:100%;min-height:150px;background:#080f20;border:1px solid #293652;border-radius:18px;color:white;padding:18px;font-size:16px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.select{width:100%;background:#101a30;color:white;border:1px solid #293652;border-radius:14px;padding:15px;font-size:15px}
+button{border:0;color:white;font-weight:bold;border-radius:16px;padding:16px;width:100%;font-size:17px;background:linear-gradient(90deg,#7b36ff,#0b9cff);margin-top:16px}
+.status{display:none;margin-top:16px;padding:15px;border-radius:14px;background:#111d34;color:#bfc9dd}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#080f20;border-top:1px solid #202b42;display:flex;justify-content:space-around;padding:12px 5px}
+.bottom div{text-align:center;color:#9ba5ba;font-size:12px}.bottom b{display:block;color:white;font-size:20px;margin-bottom:3px}
+.result{display:none}.badge{display:inline-block;padding:6px 10px;border-radius:20px;background:#1b2741;color:#c9d2e7;font-size:12px}
+</style></head>
+<body>
+<header><h1>AI Video <span>Studio</span></h1><div class="pro">👑 Pro</div></header>
+<main><div class="sub">Ton idée, notre intelligence, ta vidéo.</div>
+<section class="card">
+<label>Ton idée</label>
+<textarea id="prompt" class="prompt" placeholder="Exemple : Crée une vidéo TikTok de 45 secondes sur 5 faits étonnants concernant les voitures électriques, en français."></textarea>
+<div class="row" style="margin-top:16px">
+<div><label>Style</label><select id="style" class="select"><option>Dynamique</option><option>Cinématique</option><option>Documentaire</option><option>Drôle</option></select></div>
+<div><label>Format</label><select id="format" class="select"><option>9:16 · TikTok / Shorts</option><option>16:9 · YouTube</option><option>1:1 · Réseaux sociaux</option></select></div>
+</div>
+<div style="margin-top:16px"><label>Voix</label><select id="voice" class="select"><option>Voix française</option><option>Voix masculine</option><option>Voix féminine</option></select></div>
+<button onclick="generate()">✨ Générer ma vidéo</button>
+<div id="status" class="status"></div></section>
+<section id="result" class="card result"><span class="badge">PROJET CRÉÉ</span>
+<h2 id="title">Ta vidéo est prête</h2><p style="color:#9ca6bd">Le projet est préparé. La génération vidéo réelle sera branchée au backend IA dans l'étape suivante.</p>
+<button onclick="alert('Export disponible après connexion au moteur vidéo IA.')">⬇️ Exporter la vidéo</button></section>
+<section class="card"><h2>🎬 Mes projets</h2><p style="color:#9ca6bd">Tes créations apparaîtront ici.</p></section>
+</main>
+<nav class="bottom"><div><b>⌂</b>Accueil</div><div><b>□</b>Projets</div><div><b>＋</b>Créer</div><div><b>◎</b>Explorer</div><div><b>●</b>Profil</div></nav>
+<script>
+function generate(){const p=document.getElementById('prompt').value.trim(),s=document.getElementById('status'),r=document.getElementById('result');
+if(!p){s.style.display='block';s.textContent='✍️ Écris d’abord ce que tu veux que l’IA crée.';return}
+s.style.display='block';s.textContent='⚙️ Préparation de ton projet…';
+setTimeout(()=>{s.textContent='✅ Projet créé. Le moteur IA pourra maintenant être connecté au backend.';r.style.display='block';document.getElementById('title').textContent=p.length>45?p.slice(0,45)+'…':p},900)}
+</script></body></html>
